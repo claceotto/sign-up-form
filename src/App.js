@@ -97,7 +97,11 @@ function App() {
               //   value: "",
               //   isTouched: false,
               // });
-              onChange={e => setPassword({ value: e.target.value, isTouched: true })} />
+              onChange={e => setPassword({ ...password, value: e.target.value })}
+              //This will wait until the user moves out of the field to set iTouched to true
+              onBlur={() => {
+                setPassword({ ...password, isTouched: true })
+              }} />
             {password.value.length < 8 && password.isTouched == true ? PasswordErrorMessage() : null}
           </div>
           <div className="Field">
